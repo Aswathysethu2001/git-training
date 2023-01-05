@@ -1,0 +1,66 @@
+using System;
+
+namespace emp
+{
+    class Program
+    {
+        static string[,] EmpDetailsArr = new string[5,3];
+        static int[,] EmpSalaryArr = new int [5,6];
+        
+        static void Main(string[] args)
+        {
+            InputDetails();
+            for(int i=0 ; i < 5 ; i++)
+            {
+                Console.WriteLine($"{i+1} employee details");
+                Console.WriteLine($"employee code : {EmpDetailsArr[i , 0]}");
+                Console.WriteLine($"employee name : {EmpDetailsArr[i , 1]}");
+                Console.WriteLine($"employee no   : {EmpDetailsArr[i , 2]}");
+
+                Console.WriteLine($"employee basicsal:{EmpSalaryArr[i , 0]}");
+                Console.WriteLine($"employee da : {EmpSalaryArr[i , 1]}");
+                Console.WriteLine($"employee hra : {EmpSalaryArr[i ,2]}");
+                Console.WriteLine($"employee grosssal : {EmpSalaryArr[i , 3]}");
+                Console.WriteLine($"employee tds : {EmpSalaryArr[i , 4]}");
+                Console.WriteLine($"employee netsal : {EmpSalaryArr[i , 5]}");
+                
+            }
+        }
+        public static void InputDetails()
+         {
+            for (int i = 0 ; i < 5 ; i++)
+                {
+                    Console.WriteLine("Enter EmpCode : ");
+                    EmpDetailsArr[i, 0] = Console.ReadLine();
+                    Console.WriteLine ("Enter EmpName : ");
+                    EmpDetailsArr[i, 1] = Console.ReadLine();
+                    Console.WriteLine("Enter ContactNo: ");
+                    EmpDetailsArr[i, 2] = Console.ReadLine();
+                    
+                    Console.WriteLine("Enter Basic Salary: ");
+                    EmpSalaryArr[i, 0] = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter DA : ");
+                    EmpSalaryArr[i, 1] = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter HRA: ");
+                    EmpSalaryArr[i, 2] = Int32.Parse(Console.ReadLine());
+                    
+                    EmpSalaryArr[i, 3] = GetGrossSalary (EmpSalaryArr[i, 0], EmpSalaryArr[i, 1], EmpSalaryArr[i, 2]);
+
+                    Console.WriteLine("Enter TDS : ");
+                    EmpSalaryArr[i, 4] = Int32.Parse(Console.ReadLine());
+
+                    EmpSalaryArr[i, 5] = GetNetSalary (EmpSalaryArr[i, 3], EmpSalaryArr[i,4]);
+                }
+         }
+
+    public static int GetGrossSalary (int iBasic, int iDA , int iHRA)
+                {
+                    return ( iBasic + iDA + iHRA);
+                }
+    public static int GetNetSalary (int iGrossSalary , int iTDS)
+                {
+                    return ( iGrossSalary - iTDS);
+                }
+
+    }
+}
